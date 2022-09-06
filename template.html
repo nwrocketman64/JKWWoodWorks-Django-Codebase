@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - JKW Wood Works</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="/img/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #EEE;
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+        }
+
+        .header, footer {
+            background: #855e42; /* fallback for old browsers */
+            background: -webkit-linear-gradient(to bottom right, rgba(133, 94, 66, 1), rgba(196, 138, 100, 1)); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to bottom right, rgba(133, 94, 66, 1), rgba(196, 138, 100, 1)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+
+        .nav-link, .nav-link:visited {
+            color: white;
+        }
+
+        .rounded-xl {
+            border-radius: 15px
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-light header">
+        <div class="container-fluid">
+            <div class="navbar-brand">
+            <img class="img-thumbnail" src="/img/Logo.png" width="50" height="50" alt="Logo">
+            <span class="h4 text-white">JKW Wood Works</span>
+            </div>
+            <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav navbar-right me-auto mb-2 mb-lg-0 px-3">
+                <li class="nav-item"><a class="text-warning nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="py-5 px-3 mx-auto" style="max-width: 800px;">
+    <section class="bg-white py-4 px-3 border border-light rounded-xl shadow">
+        <h1 class="text-center">JKW Wood Works</h1>
+        <p>
+            Welcome to JKW Wood Works, our goal is to provide
+            quality handmade furniture goods that will last
+            for years.
+        </p>
+    </section>
+
+    <section class="bg-white mt-4 py-4 px-3 border border-light rounded-xl shadow">
+        <h2 class="text-center">Site Navigation</h2>
+        <p>
+            Here are some other links for this website. All links
+            below are shown in the menu bar.
+        </p>
+        <ul>
+            <li>
+                <a href="/products">Products:</a> See the complete list of
+                woods products that being offered.
+            </li>
+            <li>
+                <a href="/contact">Contact:</a> Go here to see us some feedback
+                either on this website or the products sold here.
+            </li>
+            <li>
+                <a href="/about">About:</a> More information about us.
+            </li>
+        </ul>
+    </section>
+    </main>
+    <footer class="p-3 text-center d-flex justify-content-center text-white" style="align-items: baseline;">
+        <p class="align-middle">&copy;2022 | JKW Wood Works</p>
+        <a class="p-2" href="https://www.facebook.com/profile.php?id=100076510699459"><img src="/img/facebook.png" alt="Facebook Page" width="50" height="50"></a>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</body>
+</html>
