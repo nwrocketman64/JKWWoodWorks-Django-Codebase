@@ -1,0 +1,55 @@
+body {
+    background-color: #EEE;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+
+.header, footer {
+    background: #855e42; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom right, rgba(133, 94, 66, 1), rgba(196, 138, 100, 1)); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom right, rgba(133, 94, 66, 1), rgba(196, 138, 100, 1)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.nav-link, .nav-link:visited {
+    color: white;
+}
+
+.rounded-xl {
+    border-radius: 15px
+}
+
+.active {
+    color: gold !important;
+}
+
+/* Code for the Contact Form Page */
+form label {
+    display: block;
+    margin-top: 10px;
+}
+
+form input, form textarea {
+    display: block;
+    padding: 10px;
+    width: 95%;
+    border: black 1px solid;
+    border-radius: 5px;
+}
+
+form button {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    border: black 1px solid;
+}
+
+form button:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #464646;
+    transition: all 0.33s ease 0s;
+}
+
+.errorlist {
+    color: red;
+}
