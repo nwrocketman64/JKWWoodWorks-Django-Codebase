@@ -1,5 +1,6 @@
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
+from django.views.generic import ListView, DetailView
 
 # Import the needed classes from other files.
 from .forms import RequestForm
@@ -71,8 +72,46 @@ class ContactSubmitPage(TemplateView):
         return context
 
 
-# The class delivers the about me page.
+class ProductList(ListView):
+    """ Product List
+    The class delivers the full list of products.
+    """
+    # Set the template, model, and order by last update.
+    template_name = "main_site/products.html"
+    model = Product
+    ordering = ["-last_update"]
+    context_object_name = "products"
+
+
+    # Add the title and path to the page.
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Full List of Products"
+        context["path"] = "/products"
+        return context
+
+
+class ProductDetails(DetailView):
+    """ Product Detail
+    The class returns the details of a product.
+    """
+    # Set the template and the model.
+    template_name = "main_site/product-details.html"
+    model = Product
+
+
+    # Add the title and path to the page.
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Product Details"
+        context["path"] = "/products"
+        return context
+
+
 class AboutPage(TemplateView):
+    """About Page
+    The class delivers the about me page.
+    """
     # Set the template.
     template_name = "main_site/about.html"
 

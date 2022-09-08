@@ -2,9 +2,10 @@
 
 {% load static %}
 
-{% block addons %}{% endblock %}
-
-{% block addLoad %}{% endblock %}
+{% block addons %}
+    <meta name="description" content="Welcome to JKW Wood Works, our goal is to provide quality handmade furniture goods that will last for years.">
+    <meta name="author" content="JKW Woodworks Team">
+{% endblock %}
 
 {% block content %}
     <section class="bg-white py-4 px-3 border border-light rounded-xl shadow">
@@ -15,53 +16,63 @@
             for years.
         </p>
     </section>
+    {% if product %}
     <section class="bg-white mt-4 py-4 px-3 border border-light rounded-xl shadow">
         <h2 class="text-center">The Latest Product</h2>
-        <div class="card text-center">
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    {% for image in product.images.all %}
-                    {% if forloop.counter == 1 %}
-                    <div class="carousel-item active"><img class="card-img-top" src="{{ image.image.url }}" alt="{{ image.image_title }}"></div>
-                    {% else %}
-                    <div class="carousel-item"><img class="card-img-top" src="{{ image.image.url }}" alt="{{ image.image_title }}"></div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+        <div id="carouselExampleControls" class="carousel slide mx-auto" data-bs-ride="carousel" style="max-width: 60%;">
+            <div class="carousel-inner">
+                {% for image in product.images.all %}
+                {% if forloop.counter == 1 %}
+                <div class="carousel-item active"><img class="card-img-top rounded" src="{{ image.image.url }}" alt="{{ image.image_title }}"></div>
+                {% else %}
+                <div class="carousel-item"><img class="card-img-top rounded" src="{{ image.image.url }}" alt="{{ image.image_title }}"></div>
+                {% endif %}
+                {% endfor %}
             </div>
-            <div class="card-body">
-                <h5 class="card-title">{{ product.title }}</h5>
-                <p class="card-text">{{ product.description }}</p>
-                <a href="{% url "project-details" product.slug %}" class="btn btn-primary">Check it out</a>
-            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <h5 class="text-center mt-4">{{ product.title }}</h5>
+        <p>{{ product.description|truncatechars:255 }}</p>
+        <div class="text-center">
+            <a href="{% url "product-details" product.slug %}" class="btn btn-primary">Check it out</a>
+        </div>
+    </section>
+    {% endif %}
+    <section class="bg-white mt-4 py-4 px-3 border border-light rounded-xl shadow">
+        <h3 class="text-center">More Product</h3>
+        <p>
+            We have more products to offer ranging from Epoxy Tables to Wooden Flags. Come and see all the products that we have to offer!
+        </p>
+        <div class="text-center">
+            <a href="{% url "product-list" %}" class="btn btn-primary">See Full List of Products</a>
         </div>
     </section>
     <section class="bg-white mt-4 py-4 px-3 border border-light rounded-xl shadow">
-        <h3 class="text-center">Site Navigation</h3>
+        <h3 class="text-center">Contact Us</h3>
         <p>
-            Here are some other links for this website. All links
-            below are shown in the menu bar.
+            If you would like to purchase one of the products that we offer or have any questions
+            or concerns, please feel free to contact us by filling the form linked below. There,
+            you can get a free quote on one of our products or ask questions about what we make.
         </p>
-        <ul>
-            <li>
-                <a href="/products">Products:</a> See the complete list of
-                woods products that being offered.
-            </li>
-            <li>
-                <a href="{% url "contact-page" %}">Contact:</a> Go here to see us some feedback
-                either on this website or the products sold here.
-            </li>
-            <li>
-                <a href="{% url "about-page" %}">About:</a> More information about us.
-            </li>
-        </ul>
+        <div class="text-center">
+            <a href="{% url "contact-page" %}" class="btn btn-primary">Contact Form</a>
+        </div>
+    </section>
+    <section class="bg-white mt-4 py-4 px-3 border border-light rounded-xl shadow">
+        <h3 class="text-center">About Us</h3>
+        <p>
+            If you would like to learn more about our business and what we do, come visit our
+            about page to learn more.
+        </p>
+        <div class="text-center">
+            <a href="{% url "about-page" %}" class="btn btn-primary">Learn More About Us</a>
+        </div>
     </section>
 {% endblock %}

@@ -53,3 +53,7 @@ form button:hover {
 .errorlist {
     color: red;
 }
+
+.carousel-control-prev, .carousel-control-next {
+    background-color: rgba(0, 0, 0, 0.2)
+}
