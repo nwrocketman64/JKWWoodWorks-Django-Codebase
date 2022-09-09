@@ -6,11 +6,11 @@ from .models import Request
 
 
 class RequestForm(forms.ModelForm):
-    """Request Form
+    """ Request Form
     The class defines the form that appears in the contact page.
     """
     # Make sure to add a ReCaptcha field.
-    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox(), label="Captcha*")
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox(), label="")
 
     class Meta:
         # Define the model the form is based off of.

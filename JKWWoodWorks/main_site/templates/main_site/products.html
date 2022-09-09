@@ -3,8 +3,11 @@
 {% block content %}
     <section class="bg-white py-4 px-3 border border-light rounded-xl shadow">
         <h1 class="text-center">{{ title }}</h1>
+        <p class="text-center">
+            You can also check out all our products on our <a href="https://www.etsy.com/shop/JKWWoodWorks">Etsy shop</a>.
+        </p>
         <div class="container-fluid mt-3">
-            <div class="row">
+            <div class="row align-items-center">
             {% for product in products %}
             {% if forloop.counter|divisibleby:2 %}
                 <div class="col-md-6">
@@ -19,7 +22,7 @@
                 </div>
             </div>
             {% if not forloop.last %}
-            <div class="row">
+            <div class="row align-items-center">
             {% endif %}
             {% else %}
                 <div class="col-md-6">
