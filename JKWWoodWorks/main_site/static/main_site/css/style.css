@@ -1,4 +1,8 @@
 body {
+    background-image: url("/static/main_site/img/background1-tmb.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     background-color: #EEE;
     font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
