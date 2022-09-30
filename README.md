@@ -60,6 +60,7 @@ These were a few website that I found to be very helpful in building this websit
 * [Python Django - The Practical Guide](https://www.udemy.com/share/104wQs3@RslbiNqsmO9a3w8M7W1O6VrwpLagNEYjMZD12G0NKmY3VKk0391vZ1EhRKe6fyIiUw==/)
 
 # Change Log
+* 2.1.0 - Added Background, centered text on home page, adjusted SEO, updated the about page. - 9/30/2022
 * 2.0.0 - Changed the backend to Python Django. Rebuilt the frontent using Bootstrap. Changed the database from MongoDB to MariaDB. - 9/9/2022
 
 # Website Link
