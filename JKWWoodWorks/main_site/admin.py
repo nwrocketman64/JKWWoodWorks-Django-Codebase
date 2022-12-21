@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Import the needed models.
-from .models import Image, Product, Request
+from .models import Image, Product, Request, Video
 
 # Register your models here.
 
@@ -28,7 +28,17 @@ class ImageAdmin(admin.ModelAdmin):
     )
 
 
+class VideoAdmin(admin.ModelAdmin):
+    """Video Admin
+    The class controls how videos will appear in the admin field.
+    """
+    readonly_fields = (
+        "date_created",
+    )
+
+
 # Register all the models that need to appear in admin.
 admin.site.register(Product)
 admin.site.register(Request, RequestAdmin)
 admin.site.register(Image, ImageAdmin)
+admin.site.register(Video, VideoAdmin)

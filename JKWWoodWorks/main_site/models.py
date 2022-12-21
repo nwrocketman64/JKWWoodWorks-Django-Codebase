@@ -3,17 +3,51 @@ from django.db import models
 from django.utils.text import slugify
 from PIL import Image as PILImage, ImageOps
 from djmoney.models.fields import MoneyField
+from django.conf import settings
+from django.core.mail import send_mail
+from django.template import loader
+from embed_video.fields import EmbedVideoField
 
 # Create your models here.
 
 
+class Video(models.Model):
+    """Video
+    This class is a model for videos for the website.
+    """
+    video_title = models.CharField(max_length=200)
+    video_source = EmbedVideoField()
+    date_created = models.DateTimeField(blank=True, null=True, editable=False)
+
+    # The function defines how each project appears in admin.
+    def __str__(self):
+        # Create timezone for Arizona.
+        sgtTimeDelta = timedelta(hours=-7)
+        sgtTZObject = timezone(sgtTimeDelta, name="SGT")
+
+        # Return the string of the object.
+        return f"{self.video_title} - Date Posted: {self.date_created.astimezone(sgtTZObject).strftime('%A, %b %d, %Y - %I:%M %p')}"
+
+    # The function sets the date created.
+    def save(self, *args, **kwargs):
+        # Create datetime object and set it to now.
+        current_time = datetime.now()
+
+        # Set sent time to the current time.
+        self.date_created = current_time
+
+        # Save everything else.
+        super().save(*args, **kwargs)
+
+
 class Image(models.Model):
-    """Images
+    """Image
     The class is a model for how the images of the projects are stored.
     """
     image_title = models.CharField(max_length=50)
     date_created = models.DateTimeField(blank=True, null=True, editable=False)
     image = models.ImageField(upload_to="images")
+    priority = models.PositiveIntegerField(blank=False, default=1, null=False)
 
     # The function defines how each image appears in admin.
     def __str__(self):
@@ -120,6 +154,27 @@ class Request(models.Model):
 
         # Set sent time to the current time.
         self.sent_time = current_time
+
+        # Send an email to the Owner.
+        subject = f'New Request from {self.first_name} {self.last_name} at {self.email}'
+        message = f'You have a new request from {self.first_name} {self.last_name}\n\nComment:\n{self.comment}\n\n{self.email}\n\nThis is an automatically generated email from your website.'
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [settings.EMAIL_HOST_USER, ]
+        send_mail(subject, message, email_from, recipient_list)
+
+        # Send an email to the customer making the request.
+        subject = 'Request Has Been Receive - JKW Wood Works'
+
+        # Load and render the html message.
+        html_message = loader.render_to_string(
+            'main_site/submit-email.html',
+            {
+                'full_name': f'{self.first_name} {self.last_name}'
+            }
+        )
+        
+        recipient_list = [self.email, ]
+        send_mail(subject, html_message, email_from, recipient_list, html_message=html_message)
 
         # Save everything else.
         super().save(*args, **kwargs)

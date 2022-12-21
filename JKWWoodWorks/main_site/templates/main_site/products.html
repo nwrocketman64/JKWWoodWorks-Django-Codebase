@@ -12,10 +12,10 @@
             {% if forloop.counter|divisibleby:2 %}
                 <div class="col-md-6">
                     <div class="card text-center m-2 shadow">
-                        {% with product.images.all|first as image %}
-                        <img class="card-img-top" src="{{ image.image.url }}" alt="{{ image.image_title }}">
+                        {% with product.images.all|dictsort:"priority"|first as image %}
+                        <img class="card-img-top" src="{{ image.image.url }}" alt="{{ image.image_title|title }}">
                         {% endwith %}
-                        <h6 class="card-title pt-3">{{ product.title }}</h6>
+                        <h6 class="card-title pt-3">{{ product.title|title }}</h6>
                         <p class="card-text">{{ product.base_price }}</p>
                         <a href="{% url "product-details" product.slug %}" class="btn btn-primary">Details</a>
                     </div>
@@ -27,16 +27,17 @@
             {% else %}
                 <div class="col-md-6">
                     <div class="card text-center m-2 shadow">
-                        {% with product.images.all|first as image %}
-                        <img class="card-img-top" src="{{ image.image.url }}" alt="{{ image.image_title }}">
+                        {% with product.images.all|dictsort:"priority"|first as image %}
+                        <img class="card-img-top" src="{{ image.image.url }}" alt="{{ image.image_title|title }}">
                         {% endwith %}
-                        <h6 class="card-title pt-3">{{ product.title }}</h6>
+                        <h6 class="card-title pt-3">{{ product.title|title }}</h6>
                         <p class="card-text">{{ product.base_price }}</p>
                         <a href="{% url "product-details" product.slug %}" class="btn btn-primary">Details</a>
                     </div>
                 </div>
             {% endif %}
             {% endfor %}
+            </div>
         </div>
     </section>
 {% endblock %}

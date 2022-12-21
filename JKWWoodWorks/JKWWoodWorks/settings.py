@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'main_site',
     'djmoney',
     'captcha',
+    'embed_video',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -155,3 +156,11 @@ RECAPTCHA_PRIVATE_KEY = env('RECAP_PRIVATE_KEY')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email Settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587 # Port 587 for TLS Communication.
+EMAIL_HOST_USER =  env('EMAIL_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_PASS')

@@ -32,6 +32,7 @@
             <ul class="navbar-nav navbar-right me-auto mb-2 mb-lg-0 px-3">
                 <li class="nav-item"><a class="{% if '/home' in path %}active{% endif %} nav-link" href="{% url "index-page" %}">Home</a></li>
                 <li class="nav-item"><a class="{% if '/products' in path %}active{% endif %} nav-link" href="{% url "product-list" %}">Products</a></li>
+                <li class="nav-item"><a class="{% if '/videos' in path %}active{% endif %} nav-link" href="{% url "video-list" %}">Videos</a></li>
                 <li class="nav-item"><a class="{% if '/contact' in path %}active{% endif %} nav-link" href="{% url "contact-page" %}">Contact</a></li>
                 <li class="nav-item"><a class="{% if '/about' in path %}active{% endif %} nav-link" href="{% url "about-page" %}">About</a></li>
             </ul>
@@ -44,6 +45,8 @@
         <p class="align-middle">&copy;2022 | JKW Wood Works</p>
         <a class="p-2" href="https://www.facebook.com/profile.php?id=100076510699459"><img src="{% static "main_site/img/facebook.png" %}" alt="Facebook Page" width="50" height="50"></a>
         <a href="https://www.etsy.com/shop/JKWWoodWorks"><img src="{% static "main_site/img/etsy-custom-tmb.png" %}" alt="Etsy Page" width="50" height="50"></a>
+        <a class="p-2" href="https://twitter.com/JKWWoodWorks"><img src="{% static "main_site/img/twitter-tmb.png" %}" alt="Twitter Page"></a>
+        <a href="https://www.youtube.com/channel/UCnNm0AmiUPvcg2NtWiBli6w"><img src="{% static "main_site/img/youtube-tmb.png" %}" alt="YouTube Page" width="50" height="50"></a>
     </footer>
     <script src="{% static "main_site/js/bootstrap.bundle.min.js" %}"></script>
     {% block addLoad %}{% endblock %}

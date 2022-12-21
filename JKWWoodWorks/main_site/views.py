@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView
 
 # Import the needed classes from other files.
 from .forms import RequestForm
-from .models import Product, Request
+from .models import Product, Request, Video
 
 # Create your views here.
 
@@ -105,6 +105,26 @@ class ProductDetails(DetailView):
         context = super().get_context_data(**kwargs)
         context["title"] = "Product Details"
         context["path"] = "/products"
+        return context
+
+
+class VideoList(ListView):
+    """
+    The class delivers the list of posted videos.
+    """
+    # Set the template, model, and order by last update.
+    template_name = "main_site/videos.html"
+    model = Video
+    ordering = ["-date_created"]
+    context_object_name = "videos"
+    paginate_by = 4
+
+
+    # Add the title and path to the page.
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Full List of Videos"
+        context["path"] = "/videos"
         return context
 
 
