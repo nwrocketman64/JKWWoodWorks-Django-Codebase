@@ -81,6 +81,7 @@ class ProductList(ListView):
     model = Product
     ordering = ["-last_update"]
     context_object_name = "products"
+    paginate_by = 6
 
 
     # Add the title and path to the page.
