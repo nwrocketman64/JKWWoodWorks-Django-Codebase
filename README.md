@@ -51,6 +51,7 @@ These were a few website that I found to be very helpful in building this websit
 * [Pagination](https://docs.djangoproject.com/en/4.1/topics/pagination/)
 
 # Change Log
+* 2.2.3 - Updated the paging navigation on the Videos and Products pages. - 12/22/2022
 * 2.2.2 - Fixed issues with the Video and Product page. Added paging to the Product page. - 12/21/2022
 * 2.2.1 - Fixed issues with 404 and 500 pages, Add SEO to the Video page and Product page. - 12/20/2022
 * 2.2.0 - Fixed issues in the products page, Updated Bootstrap to version 5.2.3, Website now sends out emails when requests are made, Now able to control the order the images appear in the slides, Added the video section to the website, Added two new icons to the footer. - 12/20/2022
