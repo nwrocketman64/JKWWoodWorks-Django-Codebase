@@ -5,7 +5,7 @@ This is the main codebase for the JKW Woodworks website. The code here is made o
 # Installing
 To install the website for running on your computer, you can clone the codebase either by using the GitHub website or through git. Once it is on your computer, to get the website running you must create an .env and place it in the second sewing_site folder where the settings.py file is located. You must have values set in the .env file for DEBUG_SET, SECRET_KEY, DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD, DATABASE_HOST, DATABASE_PORT, TIMEZONE, RECAP_PUBLIC_KEY, RECAP_PRIVATE_KEY, EMAIL_USER, and EMAIL_PASS. You must also make sure that the latest version of Python is installed with an updated version of pip. Then, make sure that these packages are installed.
 ```
-pip3 install django pillow mysqlclient django-environ django-recaptcha django-money django-embed-video
+pip3 install django pillow mysqlclient django-environ django-recaptcha django-money django-embed-video mysqlclient
 ```
 Once it is done installing, make sure that you have a database server install on you computer such MariaDB or another SQL database. After that, you'll need to migrate the database using these commands.
 ```
@@ -51,6 +51,7 @@ These were a few website that I found to be very helpful in building this websit
 * [Pagination](https://docs.djangoproject.com/en/4.1/topics/pagination/)
 
 # Change Log
+* 2.2.4 - Updated Bootstrap to 5.3. Fixed a resize issues in contact.
 * 2.2.3 - Updated the paging navigation on the Videos and Products pages. - 12/22/2022
 * 2.2.2 - Fixed issues with the Video and Product page. Added paging to the Product page. - 12/21/2022
 * 2.2.1 - Fixed issues with 404 and 500 pages, Add SEO to the Video page and Product page. - 12/20/2022
