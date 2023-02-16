@@ -54,6 +54,10 @@ form button:hover {
     transition: all 0.33s ease 0s;
 }
 
+textarea {
+    resize: none;
+}
+
 .errorlist {
     color: red;
 }
