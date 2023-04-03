@@ -51,6 +51,7 @@ These were a few website that I found to be very helpful in building this websit
 * [Pagination](https://docs.djangoproject.com/en/4.1/topics/pagination/)
 
 # Change Log
+* 2.2.5 - Updated Bootstrap to 5.3-alpha3. Updated Python Django to 4.2, adjust the main section max-width. - 4/3/2023
 * 2.2.4 - Updated Bootstrap to 5.3. Fixed a resize issues in contact. - 2/16/2023
 * 2.2.3 - Updated the paging navigation on the Videos and Products pages. - 12/22/2022
 * 2.2.2 - Fixed issues with the Video and Product page. Added paging to the Product page. - 12/21/2022
