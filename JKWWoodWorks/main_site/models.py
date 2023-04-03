@@ -71,8 +71,8 @@ class Image(models.Model):
         super().save(*args, **kwargs)
 
         # Set the base width and height for the thumbnail of the image.
-        base_width = 700
-        base_height = 700
+        base_width = 900
+        base_height = 900
 
         # Grab the image that was just saved.
         img_data = PILImage.open(self.image.path)
