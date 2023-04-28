@@ -32,13 +32,14 @@
             <ul class="navbar-nav navbar-right me-auto mb-2 mb-lg-0 px-3">
                 <li class="nav-item"><a class="{% if '/home' in path %}active{% endif %} nav-link" href="{% url "index-page" %}">Home</a></li>
                 <li class="nav-item"><a class="{% if '/products' in path %}active{% endif %} nav-link" href="{% url "product-list" %}">Products</a></li>
+                <li class="nav-item"><a class="{% if '/plans' in path %}active{% endif %} nav-link" href="{% url "plan-list" %}">Plans</a></li>
                 <li class="nav-item"><a class="{% if '/videos' in path %}active{% endif %} nav-link" href="{% url "video-list" %}">Videos</a></li>
                 <li class="nav-item"><a class="{% if '/contact' in path %}active{% endif %} nav-link" href="{% url "contact-page" %}">Contact</a></li>
                 <li class="nav-item"><a class="{% if '/about' in path %}active{% endif %} nav-link" href="{% url "about-page" %}">About</a></li>
             </ul>
         </div>
     </nav>
-    <main class="p-3 mx-auto" style="max-width: 1130px;">
+    <main class="p-3 mx-auto" style="max-width: 900px;">
         {% block content %}{% endblock %}
     </main>
     <footer class="p-3 text-center d-flex justify-content-center text-white" style="align-items: baseline;">

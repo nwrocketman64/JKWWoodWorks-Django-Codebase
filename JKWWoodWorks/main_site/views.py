@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView
 
 # Import the needed classes from other files.
 from .forms import RequestForm
-from .models import Product, Request, Video
+from .models import Product, Plan, Request, Video
 
 # Create your views here.
 
@@ -106,6 +106,43 @@ class ProductDetails(DetailView):
         context = super().get_context_data(**kwargs)
         context["title"] = "Product Details"
         context["path"] = "/products"
+        return context
+
+
+class PlanList(ListView):
+    """ Product List
+    The class delivers the full list of plan.
+    """
+    # Set the template, model, and order by last update.
+    template_name = "main_site/plans.html"
+    model = Plan
+    ordering = ["-last_update"]
+    context_object_name = "plans"
+    paginate_by = 6
+
+
+    # Add the title and path to the page.
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Full List of Project Plans"
+        context["path"] = "/plans"
+        return context
+
+
+class PlanDetails(DetailView):
+    """ Product Detail
+    The class returns the details of a plan.
+    """
+    # Set the template and the model.
+    template_name = "main_site/plan-details.html"
+    model = Plan
+
+
+    # Add the title and path to the page.
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Project Plan Details"
+        context["path"] = "/plans"
         return context
 
 
