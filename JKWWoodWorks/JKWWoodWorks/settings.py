@@ -44,7 +44,7 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     'main_site',
     'djmoney',
-    'captcha',
+    'django_recaptcha',
     'embed_video',
     'django.contrib.admin',
     'django.contrib.auth',
