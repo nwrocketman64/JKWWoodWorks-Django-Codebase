@@ -51,6 +51,7 @@ These were a few website that I found to be very helpful in building this websit
 * [Pagination](https://docs.djangoproject.com/en/4.1/topics/pagination/)
 
 # Change Log
+* 2.3.4 - Updated Django to 5.0.2. - 2/7/2024
 * 2.3.3 - Updated Bootstrap, Updated Django and Python packages. - 2/4/2024
 * 2.3.2 - Updated Etsy link, Update Django, and Updated Bootstrap. - 9/9/2023
 * 2.3.1 - Added venv so website could run on the current version of Ubuntu Server. - 7/27/2023
