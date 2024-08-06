@@ -51,6 +51,7 @@ These were a few website that I found to be very helpful in building this websit
 * [Pagination](https://docs.djangoproject.com/en/4.1/topics/pagination/)
 
 # Change Log
+* 2.3.9 - Updated Django and a few other packages. - 8/6/2024
 * 2.3.8 - Updated Django and a few other packages. - 7/9/2024
 * 2.3.7 - Redo VENV, Updated Django. - 5/27/2024
 * 2.3.6 - Updated Django. - 4/5/2024
