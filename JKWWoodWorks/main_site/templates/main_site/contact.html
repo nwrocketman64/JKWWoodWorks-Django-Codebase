@@ -1,36 +1,32 @@
 {% extends "base.html" %}
 
+{% load crispy_forms_tags %}
+
 {% block addons %}
-    <meta name="description" content="You can use this form to contact us if you have questions / comments or to order a product.">
-    <meta name="author" content="JKW Woodworks Team">
+<meta name="description" content="You can use this form to contact us if you have questions / comments or to order a product.">
+<meta name="author" content="JKW Woodworks Team">
 {% endblock %}
 
 {% block content %}
-    <section class="bg-white py-4 px-3 border border-light rounded-xl shadow">
-        <h1 class="text-center">Contact Form</h1>
-        <p>
-            You can use this form to contact us if you have
-            questions / comments. You can also order a
-            product from this form if you don't want to buy
-            it from the other services. Make sure you fill
-            every item in the form. We will try out best to
-            get back to as soon as we can.
-        </p>
-        <p>
-            You can also email us a <a href="mailto:jkwwoodworks1@gmail.com">jkwwoodworks1@gmail.com</a>.
-        </p>
-    </section>
-    <section class="bg-white py-4 px-3 mt-3 border border-light rounded-xl shadow">
-        <form action="/contact" method="POST">
-            {% csrf_token %}
-            {% for field in form %}
-            <div class="form-check">
-                {{ field.label_tag }}
-                {{ field }}
-                {{ field.errors }}
-            </div>
-            {% endfor %}
-            <div><button type="submit">Send Form</button></div>
-        </form>
-    </section>
+<section class="bg-white py-4 px-3 border border-light rounded-xl shadow">
+    <h1 class="text-center">Contact Form</h1>
+    <p>
+        You can use this form to contact us if you have
+        questions / comments. You can also order a
+        product from this form if you don't want to buy
+        it from the other services. Make sure you fill
+        every item in the form. We will try out best to
+        get back to as soon as we can.
+    </p>
+    <p>
+        You can also email us a <a href="mailto:jkwwoodworks1@gmail.com">jkwwoodworks1@gmail.com</a>.
+    </p>
+</section>
+<section class="bg-white py-4 px-3 mt-3 border border-light rounded-xl shadow">
+    <form action="/contact" method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div><button type="submit" class="btn btn-primary">Send Message</button></div>
+    </form>
+</section>
 {% endblock %}

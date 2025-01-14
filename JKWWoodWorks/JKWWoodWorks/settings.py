@@ -46,12 +46,15 @@ INSTALLED_APPS = [
     'djmoney',
     'django_recaptcha',
     'embed_video',
+    'crispy_forms',
+    'crispy_bootstrap5',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
@@ -164,3 +167,9 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587 # Port 587 for TLS Communication.
 EMAIL_HOST_USER =  env('EMAIL_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_PASS')
+
+# Crispy Form Configurations
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"

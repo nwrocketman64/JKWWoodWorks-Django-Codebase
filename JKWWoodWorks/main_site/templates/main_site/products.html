@@ -1,63 +1,63 @@
 {% extends "base.html" %}
 
 {% block addons %}
-    <meta name="description" content="Come see our full list of products.">
-    <meta name="author" content="JKW Woodworks Team">
+<meta name="description" content="Come see our full list of products.">
+<meta name="author" content="JKW Woodworks Team">
 {% endblock %}
 
 {% block content %}
-    <section class="bg-white py-4 px-3 border border-light rounded-xl shadow">
-        <h1 class="text-center">{{ title }}</h1>
-        <p class="text-center">
-            You can also check out all our products on our <a href="https://www.etsy.com/shop/JKWWoodWorks">Etsy shop</a>.
-        </p>
-        {% if products|length %}
-        <div class="container-fluid mt-3">
-            <div class="row align-items-center">
-            {% for product in products %}
-            {% if forloop.counter|divisibleby:2 %}
-                <div class="col-md-6">
-                    <div class="card text-center m-2 shadow">
-                        {% with product.images.all|dictsort:"priority"|first as image %}
-                        <img class="card-img-top" src="{{ image.image.url }}" alt="{{ image.image_title|title }}">
-                        {% endwith %}
-                        <h6 class="card-title pt-3">{{ product.title|title }}</h6>
-                        <p class="card-text">{{ product.base_price }}</p>
-                        <a href="{% url "product-details" product.slug %}" class="btn btn-primary">Details</a>
-                    </div>
+<section class="bg-white py-4 px-3 border border-light rounded-xl shadow">
+    <h1 class="text-center">{{ title }}</h1>
+    <p class="text-center">
+        You can also check out all our products on our <a href="https://www.etsy.com/shop/JKWWoodWorks">Etsy shop</a>.
+    </p>
+    {% if products|length %}
+    <div class="container-fluid mt-3">
+        <div class="row align-items-center">
+        {% for product in products %}
+        {% if forloop.counter|divisibleby:2 %}
+            <div class="col-md-6">
+                <div class="card text-center m-2 shadow">
+                    {% with product.images.all|dictsort:"priority"|first as image %}
+                    <img class="card-img-top" src="{{ image.image.url }}" alt="{{ image.image_title|title }}">
+                    {% endwith %}
+                    <h6 class="card-title pt-3">{{ product.title|title }}</h6>
+                    <p class="card-text">{{ product.base_price }}</p>
+                    <a href="{% url "product-details" product.slug %}" class="btn btn-primary">Details</a>
                 </div>
             </div>
-            {% if not forloop.last %}
-            <div class="row align-items-center">
-            {% endif %}
-            {% else %}
-                <div class="col-md-6">
-                    <div class="card text-center m-2 shadow">
-                        {% with product.images.all|dictsort:"priority"|first as image %}
-                        <img class="card-img-top" src="{{ image.image.url }}" alt="{{ image.image_title|title }}">
-                        {% endwith %}
-                        <h6 class="card-title pt-3">{{ product.title|title }}</h6>
-                        <p class="card-text">{{ product.base_price }}</p>
-                        <a href="{% url "product-details" product.slug %}" class="btn btn-primary">Details</a>
-                    </div>
-                </div>
-            {% endif %}
-            {% endfor %}
-            {% if products|length|divisibleby:2 is False %}
-            </div>
-            {% endif %}
         </div>
-        <ul class="pagination justify-content-center">
-            {% if page_obj.has_previous %}
-            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&lt;</a></li>
-            {% endif %}
-            <li class="page-item page-link">{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</li>
-            {% if page_obj.has_next %}
-            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&gt;</a></li>
-            {% endif %}
-        </ul>
-        {% else %}
-        <p class="text-center">There are no products to be shown.</p>
+        {% if not forloop.last %}
+        <div class="row align-items-center">
         {% endif %}
-    </section>
+        {% else %}
+            <div class="col-md-6">
+                <div class="card text-center m-2 shadow">
+                    {% with product.images.all|dictsort:"priority"|first as image %}
+                    <img class="card-img-top" src="{{ image.image.url }}" alt="{{ image.image_title|title }}">
+                    {% endwith %}
+                    <h6 class="card-title pt-3">{{ product.title|title }}</h6>
+                    <p class="card-text">{{ product.base_price }}</p>
+                    <a href="{% url "product-details" product.slug %}" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        {% endif %}
+        {% endfor %}
+        {% if products|length|divisibleby:2 is False %}
+        </div>
+        {% endif %}
+    </div>
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&lt;</a></li>
+        {% endif %}
+        <li class="page-item page-link">{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</li>
+        {% if page_obj.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&gt;</a></li>
+        {% endif %}
+    </ul>
+    {% else %}
+    <p class="text-center">There are no products to be shown.</p>
+    {% endif %}
+</section>
 {% endblock %}

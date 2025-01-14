@@ -1,5 +1,6 @@
-from datetime import datetime, timezone, timedelta
+from datetime import datetime
 from django.db import models
+from django.conf import settings
 from django.utils.text import slugify
 from PIL import Image as PILImage, ImageOps
 from djmoney.models.fields import MoneyField
@@ -7,6 +8,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.template import loader
 from embed_video.fields import EmbedVideoField
+import pytz
 
 # Create your models here.
 
@@ -21,20 +23,16 @@ class Video(models.Model):
 
     # The function defines how each project appears in admin.
     def __str__(self):
-        # Create timezone for Arizona.
-        sgtTimeDelta = timedelta(hours=-7)
-        sgtTZObject = timezone(sgtTimeDelta, name="SGT")
+        # Convert from UTC time to the proper timezone.
+        timezone_time = self.date_created.now(pytz.timezone(settings.TIME_ZONE))
 
         # Return the string of the object.
-        return f"{self.video_title} - Date Posted: {self.date_created.astimezone(sgtTZObject).strftime('%A, %b %d, %Y - %I:%M %p')}"
+        return f"{self.video_title} - Date Posted: {timezone_time.strftime('%A, %b %d, %Y - %I:%M %p')}"
 
     # The function sets the date created.
     def save(self, *args, **kwargs):
-        # Create datetime object and set it to now.
-        current_time = datetime.now()
-
         # Set sent time to the current time.
-        self.date_created = current_time
+        self.date_created = datetime.now()
 
         # Save everything else.
         super().save(*args, **kwargs)
@@ -51,21 +49,17 @@ class Image(models.Model):
 
     # The function defines how each image appears in admin.
     def __str__(self):
-        # Create timezone for Arizona.
-        sgtTimeDelta = timedelta(hours=-7)
-        sgtTZObject = timezone(sgtTimeDelta, name="SGT")
+        # Convert from UTC time to the proper timezone.
+        timezone_time = self.date_created.now(pytz.timezone(settings.TIME_ZONE))
 
         # Return the string of the object.
-        return f"{self.image_title} - Uploaded on: {self.date_created.astimezone(sgtTZObject).strftime('%A, %b %d, %Y - %I:%M %p')}"
+        return f"{self.image_title} - Uploaded on: {timezone_time.strftime('%A, %b %d, %Y - %I:%M %p')}"
 
 
     # The function creates the slug and sets the last update.
     def save(self, *args, **kwargs):
-        # Create datetime object and set it to now.
-        current_time = datetime.now()
-
         # Set sent time to the current time.
-        self.date_created = current_time
+        self.date_created = datetime.now()
 
         # Save everything else.
         super().save(*args, **kwargs)
@@ -102,12 +96,11 @@ class Product(models.Model):
 
     # The function defines how each project appears in admin.
     def __str__(self):
-        # Create timezone for Arizona.
-        sgtTimeDelta = timedelta(hours=-7)
-        sgtTZObject = timezone(sgtTimeDelta, name="SGT")
+        # Convert from UTC time to the proper timezone.
+        timezone_time = self.last_update.now(pytz.timezone(settings.TIME_ZONE))
 
         # Return the string of the object.
-        return f"{self.title} - Last Updated: {self.last_update.astimezone(sgtTZObject).strftime('%A, %b %d, %Y - %I:%M %p')}"
+        return f"{self.title} - Last Updated: {timezone_time.strftime('%A, %b %d, %Y - %I:%M %p')}"
 
 
     # The function creates the slug and sets the last update.
@@ -115,11 +108,8 @@ class Product(models.Model):
         # Create the slug for the entry.
         self.slug = slugify(self.title)
 
-        # Create datetime object and set it to now.
-        current_time = datetime.now()
-
         # Set sent time to the current time.
-        self.last_update = current_time
+        self.last_update = datetime.now()
 
         # Save everything else.
         super().save(*args, **kwargs)
@@ -141,12 +131,11 @@ class Plan(models.Model):
 
     # The function defines how each project appears in admin.
     def __str__(self):
-        # Create timezone for Arizona.
-        sgtTimeDelta = timedelta(hours=-7)
-        sgtTZObject = timezone(sgtTimeDelta, name="SGT")
+        # Convert from UTC time to the proper timezone.
+        timezone_time = self.last_update.now(pytz.timezone(settings.TIME_ZONE))
 
         # Return the string of the object.
-        return f"{self.title} - Last Updated: {self.last_update.astimezone(sgtTZObject).strftime('%A, %b %d, %Y - %I:%M %p')}"
+        return f"{self.title} - Last Updated: {timezone_time.strftime('%A, %b %d, %Y - %I:%M %p')}"
 
 
     # The function creates the slug and sets the last update.
@@ -154,11 +143,8 @@ class Plan(models.Model):
         # Create the slug for the entry.
         self.slug = slugify(self.title)
 
-        # Create datetime object and set it to now.
-        current_time = datetime.now()
-
         # Set sent time to the current time.
-        self.last_update = current_time
+        self.last_update = datetime.now()
 
         # Save everything else.
         super().save(*args, **kwargs)
@@ -177,22 +163,18 @@ class Request(models.Model):
 
     # The function defines how each request appears in admin.
     def __str__(self):
-        # Create timezone for Arizona.
-        sgtTimeDelta = timedelta(hours=-7)
-        sgtTZObject = timezone(sgtTimeDelta, name="SGT")
+        # Convert from UTC time to the proper timezone.
+        timezone_time = self.sent_time.now(pytz.timezone(settings.TIME_ZONE))
 
         # Return the string of the object.
-        return f"{self.first_name} {self.last_name} on {self.sent_time.astimezone(sgtTZObject).strftime('%A, %b %d, %Y - %I:%M %p')}"
+        return f"{self.first_name} {self.last_name} on {timezone_time.strftime('%A, %b %d, %Y - %I:%M %p')}"
 
 
     # The function saves sent_time as the current time the request was
     # saved.
     def save(self, *args, **kwargs):
-        # Create datetime object and set it to now.
-        current_time = datetime.now()
-
         # Set sent time to the current time.
-        self.sent_time = current_time
+        self.sent_time = datetime.now()
 
         # Send an email to the Owner.
         subject = f'New Request from {self.first_name} {self.last_name} at {self.email}'

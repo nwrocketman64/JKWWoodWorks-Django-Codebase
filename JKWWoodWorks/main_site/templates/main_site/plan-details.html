@@ -1,46 +1,46 @@
 {% extends "base.html" %}
 
 {% block addons %}
-    <meta name="description" content="{{ plan.title|title }} - {{ plan.description|truncatechars:60 }}">
-    <meta name="author" content="JKW Woodworks Team">
+<meta name="description" content="{{ plan.title|title }} - {{ plan.description|truncatechars:60 }}">
+<meta name="author" content="JKW Woodworks Team">
 {% endblock %}
 
 {% block main-title %}{{ plan.title|title }} - JKW Wood Works{% endblock %}
 
 {% block content %}
-    <section class="bg-white py-4 px-3 border border-light rounded-xl shadow">
-        <p class="text-black-50">Last Updated: <time datetime="{{ plan.last_update|date:'Y-m-d H:i' }}">{{ plan.last_update }}</time></p>
-        <div class="row">
-            <div class="col-md-6">
-                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        {% for image in plan.images.all|dictsort:"priority" %}
-                        {% if forloop.counter == 1 %}
-                        <div class="carousel-item active"><img class="img-fluid rounded" src="{{ image.image.url }}" alt="{{ image.image_title|title }}"></div>
-                        {% else %}
-                        <div class="carousel-item"><img class="img-fluid rounded" src="{{ image.image.url }}" alt="{{ image.image_title|title }}"></div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+<section class="bg-white py-4 px-3 border border-light rounded-xl shadow">
+    <p class="text-black-50">Last Updated: <time datetime="{{ plan.last_update|date:'Y-m-d H:i' }}">{{ plan.last_update }}</time></p>
+    <div class="row">
+        <div class="col-md-6">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% for image in plan.images.all|dictsort:"priority" %}
+                    {% if forloop.counter == 1 %}
+                    <div class="carousel-item active"><img class="img-fluid rounded" src="{{ image.image.url }}" alt="{{ image.image_title|title }}"></div>
+                    {% else %}
+                    <div class="carousel-item"><img class="img-fluid rounded" src="{{ image.image.url }}" alt="{{ image.image_title|title }}"></div>
+                    {% endif %}
+                    {% endfor %}
                 </div>
-            </div>
-            <div class="col-md-6">
-                <h1 class="text-center mt-3">{{ plan.title|title }}</h1>
-                <p class="text-center">{{ plan.base_price }}</p>
-                {% if plan.external_url %}
-                <p class="btn btn-primary"><a class="text-light text-decoration-none" href="{{ plan.external_url }}">Buy Now</a></p>
-                {% endif %}
-                <h5 class="border-bottom">Description</h5>
-                {{ plan.description|linebreaks }}
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
-    </section>
+        <div class="col-md-6">
+            <h1 class="text-center mt-3">{{ plan.title|title }}</h1>
+            <p class="text-center">{{ plan.base_price }}</p>
+            {% if plan.external_url %}
+            <p class="btn btn-primary"><a class="text-light text-decoration-none" href="{{ plan.external_url }}">Buy Now</a></p>
+            {% endif %}
+            <h5 class="border-bottom">Description</h5>
+            {{ plan.description|linebreaks }}
+        </div>
+    </div>
+</section>
 {% endblock %}
