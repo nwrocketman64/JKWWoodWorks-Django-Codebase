@@ -28,3 +28,21 @@ body {
 .carousel-control-prev, .carousel-control-next {
     background-color: rgba(0, 0, 0, 0.2);
 }
+
+/* New styles to replace inline styles */
+.main-content {
+    max-width: 900px;
+}
+
+.footer-align {
+    align-items: baseline;
+}
+
+.carousel-container {
+    max-width: 80%;
+}
+
+/* Prevent resizing of textboxes in contact form */
+textarea, .form-control {
+    resize: none !important;
+}

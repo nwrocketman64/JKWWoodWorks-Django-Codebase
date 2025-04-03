@@ -1,27 +1,68 @@
 # Overview
-This is the main codebase for the JKW Woodworks website. The code here is made open-source under Apache 2.0 license and you are free to look at the code to either add any suggestments to improve the code or to copy it and use it as the base template for your website. The purpose of this website is to sell woodworks created by the client for this website. This website is designed to run on Python 3.12 or later.
+This is the main codebase for the JKW Woodworks website. The code here is made open-source under Apache 2.0 license and you are free to look at the code to either add any suggestions to improve the code or to copy it and use it as the base template for your website. The purpose of this website is to sell woodworks created by the client for this website.  It is designed to run on Python 3.12 or later.
 
 
 # Installing
-To install the website for running on your computer, you can clone the codebase either by using the GitHub website or through git. Once it is on your computer, to get the website running you must create an .env and place it in the second JKWWoodWorks folder where the settings.py file is located. You must have values set in the .env file for DEBUG_SET, SECRET_KEY, DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD, DATABASE_HOST, DATABASE_PORT, TIMEZONE, RECAP_PUBLIC_KEY, RECAP_PRIVATE_KEY, EMAIL_USER, and EMAIL_PASS. You must also make sure that the latest version of Python is installed with an updated version of pip. Then, make sure that these packages are installed.
+To install the website for running on your computer, you can clone the codebase either by using the GitHub website or through git. Once it is on your computer, to get the website running you must create an `.env` file and place it in the second JKWWoodWorks folder where the settings.py file is located. 
+
+## .env File Template
+Your `.env` file should include the following settings:
 ```
-pip3 install django pillow mysqlclient django-environ django-recaptcha django-money django-embed-video
+DEBUG_SET=TRUE
+SECRET_KEY=
+DATABASE_NAME=
+DATABASE_USER=
+DATABASE_PASSWORD=
+DATABASE_HOST=localhost
+DATABASE_PORT=3306
+TIMEZONE=
+RECAP_PUBLIC_KEY=
+RECAP_PRIVATE_KEY=
+EMAIL_USER=
+EMAIL_PASS=
+HTTPS=
 ```
-Once it is done installing, make sure that you have a database server install on you computer such MariaDB or another SQL database. After that, you'll need to migrate the database using these commands.
+Set `HTTPS=TRUE` when deploying to production to enable secure cookie settings and HSTS.
+
+Add all the database information, set the timezone, and set Debug to false. Run this code in the Python shell to generate a secret key.
+```
+from django.core.management.utils import get_random_secret_key  
+print(get_random_secret_key())
+```
+
+## Installation Steps
+Make sure that the latest version of Python is installed with an updated version of pip. Then, install the required packages:
+
+```
+pip3 install django pillow mysqlclient django-environ django-recaptcha django-money django-embed-video django-cleanup django-crispy-forms crispy-bootstrap5 django-extensions django-csp
+```
+
+Once the packages are installed, make sure that you have a database server installed on your computer such as MariaDB or another SQL database. After that, you'll need to migrate the database using these commands:
+
 ```
 python manage.py makemigrations
 ```
 ```
 python manage.py migrate --run-syncdb
 ```
-Make sure that you include --run-syncdb otherwise the tables for the models won't be created. Then, make sure that you create a user for the admin although this isn't required to start the website. Only if you want to use the admin section.
+
+Make sure that you include `--run-syncdb` otherwise the tables for the models won't be created. Then, create a user for the admin although this isn't required to start the website. Only if you want to use the admin section:
+
 ```
 python manage.py createsuperuser
 ```
-After that, the website should be able to run and you can run it using this command.
+
+## Running the Website
+For development with HTTP:
 ```
 python manage.py runserver
 ```
+
+For development with HTTPS (using django-extensions):
+```
+python manage.py runserver_plus --cert-file cert.pem --key-file key.pem
+```
+This will generate a self-signed certificate for local HTTPS testing.
 
 
 # Development Environment
@@ -39,6 +80,10 @@ python manage.py runserver
 * [django-money](https://django-money.readthedocs.io/en/stable/) - Used to process money data values and how they are display on each web page.
 * [django-embed-video](https://django-embed-video.readthedocs.io/en/latest/) - Used to embed videos from YouTube into the website.
 * [Bootstrap](https://getbootstrap.com/) - The CSS Framework used for the frontend.
+* [django-csp](https://github.com/mozilla/django-csp) - Used to implement Content Security Policy for improved security.
+* [django-extensions](https://django-extensions.readthedocs.io/) - Provides additional management commands and development tools.
+* [django-cleanup](https://github.com/un1t/django-cleanup) - Automatically deletes files when models are deleted.
+* [django-crispy-forms](https://github.com/django-crispy-forms/django-crispy-forms) - Provides beautiful rendering of forms.
 
 
 # Useful Websites
@@ -51,6 +96,7 @@ These were a few website that I found to be very helpful in building this websit
 * [Pagination](https://docs.djangoproject.com/en/4.1/topics/pagination/)
 
 # Change Log
+* 2.5.0 - Enhanced security with Content Security Policy (CSP) and HTTP Strict Transport Security (HSTS). Removed inline styles and moved them to CSS files. Fixed resizing of textboxes in contact form. Updated Django to version 5.2. - 5/29/2024
 * 2.4.1 - Updated Django and fixed issues with models. - 3/7/2025
 * 2.4.0 - Updated Django and other packages, Added Django Cleanup and Crispy Forms, clean code in model and templates. - 1/14/2025
 * 2.3.9 - Updated Django and a few other packages. - 8/6/2024

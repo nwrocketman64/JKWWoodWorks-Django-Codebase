@@ -19,7 +19,7 @@
 {% if product %}
 <section class="bg-white mt-4 py-4 px-3 border border-light rounded-xl shadow">
     <h2 class="text-center">The Latest Product</h2>
-    <div id="carouselExampleControls" class="carousel slide mx-auto" data-bs-ride="carousel" style="max-width: 80%;">
+    <div id="carouselExampleControls" class="carousel slide mx-auto carousel-container" data-bs-ride="carousel">
         <div class="carousel-inner">
             {% for image in product.images.all|dictsort:"priority" %}
             {% if forloop.counter == 1 %}

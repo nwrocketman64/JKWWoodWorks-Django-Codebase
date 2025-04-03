@@ -45,9 +45,11 @@ INSTALLED_APPS = [
     'main_site',
     'djmoney',
     'django_recaptcha',
+    'django_extensions',
     'embed_video',
     'crispy_forms',
     'crispy_bootstrap5',
+    'csp',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -58,6 +60,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'csp.middleware.CSPMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -173,3 +176,54 @@ EMAIL_HOST_PASSWORD = env('EMAIL_PASS')
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# Session Cookies
+SESSION_COOKIE_SECURE = env('HTTPS') == 'TRUE'    # Ensures session cookies are only sent over HTTPS
+CSRF_COOKIE_SECURE = env('HTTPS') == 'TRUE'       # Ensures CSRF cookies are only sent over HTTPS
+SESSION_COOKIE_HTTPONLY = env('HTTPS') == 'TRUE'  # Prevents JavaScript access to session cookies
+
+# HSTS Settings
+SECURE_HSTS_SECONDS = 31536000                             # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = env('HTTPS') == 'TRUE'    # Apply HSTS to subdomains
+SECURE_HSTS_PRELOAD = env('HTTPS') == 'TRUE'               # Allow preloading into browsers
+SECURE_SSL_REDIRECT = env('HTTPS') == 'TRUE'               # Redirect HTTP to HTTPS
+
+# CSP Configuration - New Format (django-csp 4.0+)
+CONTENT_SECURITY_POLICY = {
+    'DIRECTIVES': {
+        'default-src': ("'self'",),  # Default to same-origin only
+        'script-src': (
+            "'self'",
+            "https://cdn.jsdelivr.net",  # Bootstrap JS
+            "https://www.google.com",    # ReCAPTCHA
+            "https://www.gstatic.com",   # ReCAPTCHA
+            "'unsafe-inline'",           # Required for ReCAPTCHA
+        ),
+        'style-src': (
+            "'self'",
+            "https://cdn.jsdelivr.net",  # Bootstrap CSS
+            "https://fonts.googleapis.com",  # Google Fonts CSS
+            "'unsafe-inline'",           # Sometimes needed for ReCAPTCHA
+        ),
+        'font-src': (
+            "'self'",
+            "https://fonts.gstatic.com",  # Google Fonts
+        ),
+        'img-src': (
+            "'self'",  # Local images
+            "data:",   # Allow data URIs for images (Bootstrap icons)
+            "https://www.google.com",    # ReCAPTCHA images
+            "https://www.gstatic.com",   # ReCAPTCHA images
+        ),
+        'connect-src': (
+            "'self'",  # Local API calls
+            "https://www.google.com",    # ReCAPTCHA API calls
+        ),
+        'frame-src': (
+            "https://www.youtube.com",  # For embedded YouTube videos
+            "https://www.youtube-nocookie.com",  # Privacy-enhanced YouTube embeds
+            "https://www.google.com",  # For ReCaptcha
+            "https://recaptcha.google.com", # Also for ReCaptcha
+        ),
+    },
+}
